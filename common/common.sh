@@ -3,7 +3,7 @@
 COMMON_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 source ${COMMON_DIR}/ansi.sh
 
-export LOG_PATH=/var/log/laravel-ubuntu-init.log
+export LOG_PATH=/var/log/laravel-ubuntu-1804-init.log
 export WWW_USER="www-data"
 export WWW_USER_GROUP="www-data"
 
