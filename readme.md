@@ -1,20 +1,20 @@
 <p align="center">
   <br>
-  <b>測試專案</b>
+  <h1>Ubuntu 18.04 版本 Laravel 環境</h1>
+  <br>
+  <b>環境建置腳本</b>
   <br>
 </p>
 
 [參考](https://github.com/summerblue/laravel-ubuntu-init)
 
-嘗試製作
-
-## 简介
+## 簡介
 
 適用在 Ubuntu 18.04 的 LNMP 安裝腳本，並設置了中國國內鏡像加速。
 
 請確保所有指令都以 root 帳戶執行，如果登入帳戶不是 root，則需執行 `sudo su -` 切換為 root 帳戶後再下載安裝。
 
-## 软件列表
+## 軟體列表
 
 * Git
 * PHP 7.3
@@ -22,51 +22,55 @@
 * MySQL
 * Sqlite3
 * Composer
-* Nodejs 8
+* Nodejs 10
 * Yarn
 * Redis
 * Beanstalkd
 * Memcached
 
-## 可选软件列表
+## 可選軟體列表
 
-以下软件需手动执行安装脚本：
+以下軟體需手動執行安裝腳本：
 
 * Elasticsearch：`./18.04/install_elasticsearch.sh`
 
-## 安装步骤
+## 安裝步驟
 
 ```
 wget -qO- https://raw.githubusercontent.com/thekdesign/laravel-ubuntu-1804-init/master/download.sh - | bash
 ```
 
-此脚本会将安装脚本下载到当前用户的 Home 目录下的 `laravel-ubuntu-1804-init` 目录并自动执行安装脚本，在安装结束之后会在屏幕上输出 Mysql root 账号的密码，请妥善保存。
+此腳本會將安裝腳本下載到當前用戶的 Home 目錄下的 `laravel-ubuntu-1804-init` 目錄並且自動執行安裝腳本，在安裝結束後會在螢幕上輸出 Mysql root 帳號的密碼，請妥善保存。
 
-如果当前不是 root 账户则不会自动安装，需要切换到 root 账户后执行 `./18.04/install.sh`。
+如果當前不是 root 帳戶則不會自動安裝，需要切換到 root 帳戶後執行 `./18.04/install.sh`。
 
 ## 日常使用
 
-### 1. 新增 Nginx 站点
+### 1. 新增 Nginx 配置
 
 ```
 ./18.04/nginx_add_site.sh
 ```
 
-会提示输入站点名称（只能是英文、数字、`-` 和 `_`）、域名（多个域名用空格隔开），确认无误后会创建对应的 Nginx 配置并重启 Nginx。
+會提示輸入網站名稱（只能是英文、數字、`-` 和 `_`）、域名（多個域名用空格隔開），確認無誤後會創建對應的 Nginx 配置並重新啟動 Nginx。
 
-### 2. 新增 Mysql 用户、数据库
+### 2. 新增 Mysql 用戶、數據庫
 
 ```
-./16.04/mysql_add_user.sh
+./18.04/mysql_add_user.sh
 ```
 
-会提示输入 root 密码，如果错误将无法继续。输入需要创建的 Mysql 用户名，以及确认是否需要创建对应用户名的数据库。
+會提示輸入 root 密碼，如果錯誤將無法繼續。輸入需要創建的 Mysql 用戶名，以及確認是否需要創建對應用戶名的數據庫。
 
-创建完毕之后会将新用户的密码输出到屏幕上，请妥善保存。
+創建完畢後會將新用戶的密碼輸出到螢幕上，請妥善保存。
 
-### 3. 以 www-data 身份执行命令
+### 3. 以 www-data 身份執行命令
 
-本项目提供了一个 `sudowww` 的 `alias`，当需要以 `www-data` 用户身份执行命令时（如 `git clone 项目`、`php artisan config:cache` 等），可以直接在命令前加上 `sudowww`，同时在原命令两端加上单引号，如：
+本項目提供了一個 `sudowww` 的 `alias`，當需要以 `www-data` 用戶身份執行命令時（如 `git clone 項目`、`php artisan config:cache` 等），可以直接在命令前加上 `sudowww`，同時在原命令兩端加上單引號，如：
+
+```
+sudowww 'git clone git@github.com:thekdesign/laravel-ubuntu-1804-init.git'
+```
 
 ```
 sudowww 'php artisan config:cache'
