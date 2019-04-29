@@ -6,7 +6,7 @@ source ${CURRENT_DIR}/../common/common.sh
 
 [ $(id -u) != "0" ] && { ansi -n --bold --bg-red "請使用 root 帳戶執行本腳本"; exit 1; }
 
-MYSQL_ROOT_PASSWORD=`random_string`
+MYSQL_ROOT_PASSWORD=root
 
 function init_system {
     export LC_ALL="en_US.UTF-8"
@@ -14,7 +14,7 @@ function init_system {
     locale-gen en_US.UTF-8
     locale-gen zh_TW.UTF-8
 
-    ln -sf /usr/share/zoneinfo/Asia/Taiwan /etc/localtime
+    ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime
 
     apt-get update
     apt-get install -y software-properties-common
@@ -31,7 +31,7 @@ function init_alias {
 function init_repositories {
     add-apt-repository -y ppa:ondrej/php
     add-apt-repository -y ppa:nginx/stable
-    grep -rl ppa.launchpad.net /etc/apt/sources.list.d/ | xargs sed -i 's/http:\/\/ppa.launchpad.net/https:\/\/launchpad.proxy.ustclug.org/g'
+#    grep -rl ppa.launchpad.net /etc/apt/sources.list.d/ | xargs sed -i 's/http:\/\/ppa.launchpad.net/https:\/\/launchpad.proxy.ustclug.org/g'
 
     curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
     echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list
