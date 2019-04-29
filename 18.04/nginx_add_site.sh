@@ -7,7 +7,7 @@ source ${CURRENT_DIR}/../common/common.sh
 
 read -r -p "請輸入項目名稱：" project
 
-[[ $project =~ ^[A-Za-z0-9_]+$ ]] || {
+[[ $project =~ ^[A-Za-z0-9_\-\.]+$ ]] || {
     ansi -n --bold --bg-red "項目包含非法字元"
     exit 1
 }
